@@ -1,64 +1,49 @@
-import { StyleSheet, Text,ScrollView, View,SafeAreaView,Modal ,TouchableOpacity } from 'react-native'
+import { StyleSheet, Text,ScrollView, View,SafeAreaView,Modal,TouchableOpacity } from 'react-native'
 import React,{useState} from 'react'
-import {COLOR,SIZES} from '../Screens/constants/theme'
-import Header from './Header';
-import DropDown from 'react-native-paper-dropdown';
-import { Picker } from '@react-native-picker/picker';
-const SearchStock = (props) => {
-const [showDropDown,setShowDropDown] = useState(false)
-const [sStock,setSStock] = useState(true) 
-const [frameType,setFrameType] = useState('Frame Type')
-const [frameName,setFrameName] = useState('')
-const [frameCode,setFrameCode] = useState('')
-const [frameSize,setFrameSize] = useState('')
-const [frameColor,setFrameColor] = useState('')
-const [allData,setAllData] = useState([])
-const [first,setFirst] = useState([])
-const [second,setSecond] = useState([])
-const [third,setThird] = useState([])
-const [fourth,setFourth] = useState([])
+import { COLORS,SIZES } from '../Screens/constants/theme'
+import moment from 'moment';
+import { Dimensions, ToastAndroid, Platform } from "react-native";
+const { width, height } = Dimensions.get('screen');
+import DropDown from "react-native-paper-dropdown";
+import { Provider, TextInput,Checkbox } from "react-native-paper";
 
-const frameNam=()=>{
 
-setFirst([])
-  for( let i=0;i<props.data.length;i++){
-    
-      if(props.data[i].frameType=='Half Rimless/Supra'){
-      console.log(props.data[i].quantity)
-      first.push(props.data[i])  
-      }}
-      console.log(first)
-return( 
- <View>
- { first.map((item)=>(
-  <TouchableOpacity style={{justifyContent:"center",borderColor:'red', margin:4,borderWidth:1,}} onPress={()=>{setFrameName(item.frameName)}}>
-      <Text style={{padding:4}}>{item.modelName}</Text>
-    </TouchableOpacity>
-           )) 
+
+const searchStock = (props) => {
+    const [showDropDown, setShowDropDown] = useState(false);
+    const [FrameType, setFrameType] = useState('Frame Type');
+    const [Framename, setFramename] = useState('Frame Name');
+    const [framecode, setframecode] = useState('Frame Code');
+    const [Framesize, setFramesize] = useState('Frame Size');
+    const [frameColor, setframeColor] = useState('Frame Color');
+const parent=()=>{
+    let data={
+        FrameType:FrameType,Framename:Framename
+    }
+    props.parentCallback(data)
 }
-           </View>
-  
-)}
+   //alert(JSON.stringify(props.data[0]))
+    return (
+        <Provider>
 
-return (
-      <Modal visible={sStock} animationType={"fade"}  onRequestClose={()=>{console.log("Pop up must be closed")}} >
-      <ScrollView style={{alignSelf:'center',height:SIZES.height,width:SIZES.width}}>
-    <ScrollView>
-      {/* <Header title="Frame Search" /> */}
+        <Modal
+        animationType={"fade"}
+        transparent={true}
+        visible={true}
+        onRequestClose={() => { console.log("Modal has been closed.") }}>
+           <ScrollView style={{ alignSelf: 'center',
+        backgroundColor: "rgba(0,0,0,0.3)",
+        height:height,
+        width: width,
+      }}>
+                  <ScrollView style={{ backgroundColor: "#fff", width: width / 1.2, borderRadius: 10,marginTop:50, alignSelf: "center", }}  >
+    <Text style={{fontSize:16,marginVertical:4,alignSelf:"center"}} >Stock</Text>
+    <View style={{margin:10}}
+> 
+<TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setShowDropDown("FrameType")}}>
 
-        <View style={{margin:10}}></View>
-        <Picker  selectedValue={frameType}
-     onValueChange={(itemValue, itemIndex) =>{setFrameType(itemValue)}}  style={{color:'red'}} >
-       <Picker.Item label='Select Frame'   />
-       <Picker.Item label='3 Piece/Rimless'   value= '3 Piece/Rimless'/>
-      <Picker.Item label='Half Rimless/Supra' value= 'Half Rimless/Supra' />
-      <Picker.Item label='Full Shell/Plastic' value= 'Full Shell/Plastic' />
-      <Picker.Item label='Full Metal' value= 'Full Metal' />
-      <Picker.Item label='Goggles' value= 'Goggles' />
-    </Picker>
-
-{frameType &&  frameNam()
- }
+  <Text style={{padding:4}}>{FrameType}</Text>
+  </TouchableOpacity>
 
         {showDropDown==='FrameType'&&
 props.data.map((item)=>(
@@ -68,39 +53,81 @@ props.data.map((item)=>(
   </TouchableOpacity>
          ))
 }
-
+</View>
+<View style={{margin:10}}
+> 
 <TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setShowDropDown("FrameName")}}>
-  <Text style={{padding:4}}>{frameName}</Text>
+
+  <Text style={{padding:4}}>{Framename}</Text>
   </TouchableOpacity>
 
-
-  {/* {showDropDown==='FrameName'&&
-
+        {showDropDown==='FrameName'&&
 props.data.map((item)=>(
-<TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setFrameName(item.modelName),setShowDropDown()}}>
+<TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setFramename(item.modelName),setShowDropDown()}}>
 
   <Text style={{padding:4}}>{item.modelName}</Text>
   </TouchableOpacity>
          ))
-} */}
-    </ScrollView>
-
-
-</ScrollView>
-<View style={{marginTop:30}}>
-    <TouchableOpacity onPress={()=>{console.log('close it'),setSStock(!sStock)}}>
-<Text>Close</Text>
-    </TouchableOpacity>
-</View>
-<View style={{flexDirection:'row'}}>
-      <Text>{frameType}</Text>
-      <Text>framName</Text>
-    </View>
-      </Modal>
-
-  )
 }
+</View>
+<View style={{margin:10}}
+> 
+<TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setShowDropDown("FrameCode")}}>
 
-export default SearchStock
+  <Text style={{padding:4}}>{framecode}</Text>
+  </TouchableOpacity>
+
+        {showDropDown==='FrameCode'&&
+props.data.map((item)=>(
+<TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setframecode(item.modelCode),setShowDropDown()}}>
+
+  <Text style={{padding:4}}>{item.modelCode}</Text>
+  </TouchableOpacity>
+         ))
+}
+</View>
+<View style={{margin:10}}
+> 
+<TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setShowDropDown("FrameSize")}}>
+
+  <Text style={{padding:4}}>{Framesize}</Text>
+  </TouchableOpacity>
+
+        {showDropDown==='FrameSize'&&
+props.data.map((item)=>(
+<TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setFramesize(item.modelSize),setShowDropDown()}}>
+
+  <Text style={{padding:4}}>{item.modelSize}</Text>
+  </TouchableOpacity>
+         ))
+}
+</View>
+
+<View style={{margin:10}}
+> 
+<TouchableOpacity style={{justifyContent:"center",borderColor:'gray', margin:4,borderWidth:1,}} onPress={()=>{setShowDropDown("FrameColor")}}>
+
+  <Text style={{padding:4}}>{frameColor}</Text>
+  </TouchableOpacity>
+
+        {showDropDown==='FrameColor'&&
+props.data.map((item)=>(
+<TouchableOpacity style={{justifyContent:"center",borderColor:'red', margin:4,borderWidth:1,}} onPress={()=>{setframeColor(item.modelColor),setShowDropDown()}}>
+
+  <Text style={{padding:4}}>{item.modelColor}</Text>
+  </TouchableOpacity>
+         ))
+}
+</View>
+
+          <TouchableOpacity onPress={()=>parent()} style={{height:40,alignSelf:"center", width:50,backgroundColor:"green",justifyContent:"center",marginBottom:5}}><Text style={{textAlign:"center",color:"#fff"}}>Ok</Text></TouchableOpacity>
+       </ScrollView>
+       </ScrollView>
+       </Modal>
+       </Provider>
+
+  )}
+
+export default searchStock
 
 const styles = StyleSheet.create({})
