@@ -220,10 +220,21 @@ cust_flatList_text_number : {
 orderDetails:{
     color:COLORS.black,
     backgroundColor:COLORS.gray
+},
+
+frameDetails_heading:{
+    fontWeight:'bold',
+    color:COLORS.red,
+    fontSize:15,
+    padding:5
+},
+frameDetails_text:{
+
+       color:COLORS.black,
+     fontSize:13,
+        padding:5,
+        marginTop:3,
 }
-
-
-
 
 })
 

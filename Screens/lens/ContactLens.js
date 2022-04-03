@@ -12,7 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const ContactLens = () => {
 
   const dateValue= new Date()
-  const [lens,setLens] = useState("contact_lens")
+  const [lens,setLens] = useState("Contact Lens")
   const [pDate,setPdate] =useState(dateValue.getDate().toString() + "-" +(dateValue.getMonth()+1).toString()+ "-" +dateValue.getFullYear().toString()) 
   const [dateDoc,setDateDoc]= useState(dateValue)
   const [sup_comp_name,setSup_comp_name]= useState("")
@@ -75,7 +75,7 @@ const ContactLens = () => {
     lens:lens,
     date:pDate,
     dateDoc:dateDoc,
-    sup_comp_name:sup_comp_name,
+    supplier_name:sup_comp_name,
     address:address ,
     lensCompName:lensCompName, 
     lensProdName:lensProdName ,

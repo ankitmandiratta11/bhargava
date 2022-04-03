@@ -13,7 +13,7 @@ const Progressive = () => {
  
   const dateValue= new Date()
 
-  const [lens,setLens] = useState("progressive_lens")
+  const [lens,setLens] = useState("Progressive")
   const [pDate,setPdate] =useState(dateValue.getDate().toString() + "-" +(dateValue.getMonth()+1).toString()+ "-" +dateValue.getFullYear().toString()) 
   const [dateDoc,setDateDoc]= useState(dateValue)
   const [sup_comp_name,setSup_comp_name]= useState("")
@@ -86,7 +86,7 @@ const Progressive = () => {
                         lens:lens,
                         date:pDate,
                       dateDoc:dateDoc,
-                      sup_comp_name:sup_comp_name,
+                      supplier_name:sup_comp_name,
                       address:address, 
                       lensType:lensType, 
                       lensCompName:lensCompName, 

@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Bifocal = () => {
   const dateValue= new Date()
 
-  const [lens,setLens] = useState("bifocal_lens")
+  const [lens,setLens] = useState("Bifocal Lens")
   const [pDate,setPdate] =useState(dateValue.getDate().toString() + "-" +(dateValue.getMonth()+1).toString()+ "-" +dateValue.getFullYear().toString()) 
   const [dateDoc,setDateDoc]= useState(dateValue)
   const [sup_comp_name,setSup_comp_name]= useState("")
@@ -78,7 +78,7 @@ const Bifocal = () => {
                         lens:lens,
                         date:pDate,
                       dateDoc:dateDoc,
-                      sup_comp_name:sup_comp_name,
+                      supplier_name:sup_comp_name,
                       address:address, 
                       lensType:lensType, 
                       lensCompName:lensCompName, 

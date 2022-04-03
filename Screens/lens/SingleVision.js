@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const SingleVision = () => {
   
   const dateValue= new Date()
-  const [lens,setLens] = useState("sigle_vision")
+  const [lens,setLens] = useState("Single Vision")
   const [pDate,setPdate] =useState(dateValue.getDate().toString() + "-" +dateValue.getMonth().toString()+ "-" +dateValue.getFullYear().toString()) 
   const [dateDoc,setDateDoc]= useState(dateValue)
   const [sup_comp_name,setSup_comp_name]= useState("")

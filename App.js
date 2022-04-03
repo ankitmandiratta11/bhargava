@@ -4,10 +4,10 @@ import Styles from './GlobalStyle/Styles'
 import {createStackNavigator} from "@react-navigation/stack";
 import { NavigationContainer,DefaultTheme } from '@react-navigation/native';
 import  {Login,Home,NewOrder,PendingOrder,PendingPayment,Stock,VisitBook,Reports,OrderLens,DataManagement,Languages,Add_Customer} from './Screens'
-import { Progressive,ContactLens,Bifocal,SingleVision } from './Screens/lens';
+import { Progressive,ContactLens,Bifocal,SingleVision,LensStock } from './Screens/lens';
 import { OrderDetails } from './Screens/orders';
 import Trial from './Screens/Trial';
-import { NewFrame,frameStock } from './Screens/frames';
+import { NewFrame,FrameStock } from './Screens/frames';
 import appTheme, { COLORS } from './Screens/constants/theme';
 import {AuthContext} from './Components/context';
 import auth from '@react-native-firebase/auth';
@@ -158,7 +158,9 @@ dispatch ({type:'LOGOUT'})
 <Stack.Screen name="cust_details" component={CustomerDetails} options={{headerShown:false}} />
   <Stack.Screen name="order_details" component={OrderDetails} options={{headerShown:false}} />
   <Stack.Screen name="customer_history" component={CustomerHistory} options={{headerShown:false}} />
-  <Stack.Screen name="frame_stock" component={frameStock} options={{headerShown:false}} />
+  <Stack.Screen name="frame_stock" component={FrameStock} options={{headerShown:false}} />
+  <Stack.Screen name="lens_stock" component={LensStock} options={{headerShown:false}} />
+
 </Stack.Navigator>
   )}
 </NavigationContainer>

@@ -1,3 +1,3 @@
 import NewFrame from "./NewFrame";
-import frameStock from "./frameStock";
-export {NewFrame,frameStock}
+import FrameStock from "./FrameStock";
+export {NewFrame,FrameStock}

@@ -130,7 +130,7 @@ const MainContent =()=>{
          onValueChange={(itemValue, itemIndex) =>{setFrameType(itemValue)}}  style={{color:'red'}} >
             <Picker.Item label='3 Piece/Rimless'  value= '3 Piece/Rimless'/>
           <Picker.Item label='Half Rimless/Supra' value= 'Half Rimless/Supra' />
-          <Picker.Item label='Full Shell/Plastic' value= 'Full Shell/Plast}ic' />
+          <Picker.Item label='Full Shell/Plastic' value= 'Full Shell/Plastic' />
           <Picker.Item label='Full Metal' value= 'Full Metal' />
           <Picker.Item label='Goggles' value= 'Goggles' />
         </Picker>

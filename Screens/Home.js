@@ -43,7 +43,7 @@ const New_edit_dialog =()=>{
         For adding new data click on "NEW"  and for changes click on "EDIT"
           </Dialog.Description>
           <Dialog.Button label="New Stock"  style={Styles.dialog_button} onPress={()=>{setNew_edit(false),setLens_dialog(false),setNew_stock(true)}}  />
-          <Dialog.Button label="Edit Stock" style={Styles.dialog_button} onPress={()=>{setEditDialog(true)}} />
+          <Dialog.Button label="View Stock" style={Styles.dialog_button} onPress={()=>{setEditDialog(true),setNew_edit(false)}} />
           <Dialog.Button label="Cancel" style={Styles.dialog_button} onPress={()=>setNew_edit(false)}/>
         </Dialog.Container>
       </View>
@@ -76,7 +76,7 @@ return(
     <Dialog.Title style={{color:COLORS.red,alignSelf:'center'}}>Edit/View  Stock   </Dialog.Title>
              <Dialog.Description style={{alignContent:'center',justifyContent:'center',alignItems:'center'}}>
              <Dialog.Button label="Frame"  style={Styles.dialog_button}  onPress={()=>{setEditDialog(false),navigation.navigate("frame_stock")}} />
-             <Dialog.Button label="Lens" style={Styles.dialog_button} onPress={()=>{setLens_dialog(true),setEditDialog(false)}}/>
+             <Dialog.Button label="Lens" style={Styles.dialog_button} onPress={()=>{setEditDialog(false),navigation.navigate('lens_stock')}}/>
              <Dialog.Button label="Cancel" style={Styles.dialog_button} onPress={()=>{setEditDialog(false)}}/>
            </Dialog.Description>
       </Dialog.Container> 
